@@ -14,18 +14,49 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* خلفية متحركة */
         body {
-            background: #f5f6fa;
-            color: #333;
+            background: linear-gradient(135deg, #20002c, #6f00ff);
+            color: white;
+            overflow: hidden;
+            position: relative;
         }
 
+        /* تأثير الثلوج */
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .snowflake {
+            position: absolute;
+            background: white;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10px); opacity: 0.8; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             padding: 15px 20px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            margin: 10px;
         }
 
         .navbar .logo {
@@ -38,16 +69,18 @@
             gap: 15px;
         }
 
+        /* Container */
         .container {
             max-width: 1100px;
             margin: 20px auto;
             padding: 15px;
         }
 
+        /* Tabs */
         .tabs {
             display: flex;
             gap: 20px;
-            border-bottom: 2px solid #ddd;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
@@ -61,10 +94,11 @@
         }
 
         .tab.active {
-            border-bottom: 3px solid #6A0DAD;
-            color: #6A0DAD;
+            border-bottom: 3px solid #FF4081;
+            color: #FF4081;
         }
 
+        /* Cards */
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -72,24 +106,20 @@
         }
 
         .card {
-            background: linear-gradient(135deg, #FF8C00, #FF4081);
+            background: rgba(255, 255, 255, 0.2);
             padding: 20px;
             border-radius: 10px;
-            color: white;
             text-align: center;
             font-weight: bold;
         }
 
-        .card.blue {
-            background: linear-gradient(135deg, #007BFF, #00C6FF);
-        }
-
+        /* Sections */
         .section {
             margin-top: 20px;
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .section h3 {
@@ -111,7 +141,7 @@
 
         button {
             padding: 10px 15px;
-            background: #6A0DAD;
+            background: #FF4081;
             color: white;
             border: none;
             cursor: pointer;
@@ -120,24 +150,10 @@
         }
 
         button:hover {
-            background: #57089a;
+            background: #d13467;
         }
 
-        .info-box {
-            background: #eef2ff;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-
-        .revenus {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
             .cards {
                 grid-template-columns: 1fr;
@@ -146,6 +162,9 @@
     </style>
 </head>
 <body>
+
+    <!-- تأثير الثلوج -->
+    <div class="snowflakes"></div>
 
     <!-- Navbar -->
     <div class="navbar">
@@ -171,18 +190,13 @@
         <div class="cards">
             <div class="card">SOLDE <br> 0.00 €</div>
             <div class="card">REVENUS AUJOURD'HUI <br> 0 €</div>
-            <div class="card blue">REJOINS NOUS SUR <br> Telegram</div>
+            <div class="card">REJOINS NOUS SUR <br> Telegram</div>
         </div>
 
         <!-- Section: Obtenir un code -->
         <div class="section">
             <h3>Obtenir un code</h3>
-            <div class="info-box">
-                Les numéros sont en maintenance et seront de retour très rapidement. En attendant, votre solde est toujours disponible et vous pouvez faire des demandes de paiement et des achats sur la boutique.
-            </div>
-            <div class="info-box">
-                Pour ce week-end, nous avons désactivé les faux codes. Vos clients entendront « il vous reste encore X appels pour obtenir votre code »
-            </div>
+            <p>Les numéros sont en maintenance et seront de retour très rapidement...</p>
         </div>
 
         <!-- Section: Valider un code -->
@@ -192,16 +206,25 @@
                 <input type="text" placeholder="Code">
                 <button>VALIDER LE CODE</button>
             </div>
-            <p>Codes valables 30 minutes</p>
-        </div>
-
-        <!-- Revenus -->
-        <div class="revenus">
-            <h3>Revenus</h3>
-            <p>📊 Cette semaine vs. Semaine dernière</p>
         </div>
 
     </div>
+
+    <!-- Script لتوليد الثلوج -->
+    <script>
+        function createSnowflakes() {
+            const snowflakesContainer = document.querySelector(".snowflakes");
+            for (let i = 0; i < 50; i++) {
+                let snowflake = document.createElement("div");
+                snowflake.classList.add("snowflake");
+                snowflake.style.left = Math.random() * 100 + "vw";
+                snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
+                snowflake.style.animationDelay = Math.random() * 2 + "s";
+                snowflakesContainer.appendChild(snowflake);
+            }
+        }
+        createSnowflakes();
+    </script>
 
 </body>
 </html>
