@@ -24,11 +24,23 @@
             padding: 15px 20px;
             background-color: black;
             color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         .logo {
-            font-size: 24px;
+            display: flex;
+            align-items: center;
+            font-size: 20px;
             font-weight: bold;
+        }
+
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
         }
 
         nav ul {
@@ -45,19 +57,25 @@
 
         nav ul li a {
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             color: white;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #d32f2f;
         }
 
         /* الواجهة الرئيسية */
         .hero {
             position: relative;
             text-align: center;
+            margin-top: 60px;
         }
 
         .hero img {
             width: 100%;
-            height: 600px;
+            height: 500px;
             object-fit: cover;
         }
 
@@ -66,19 +84,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             padding: 20px;
             border-radius: 10px;
             color: white;
         }
 
         .hero-text h1 {
-            font-size: 36px;
+            font-size: 28px;
             margin: 0;
         }
 
         .hero-text p {
-            font-size: 18px;
+            font-size: 16px;
         }
 
         /* قسم المنتجات */
@@ -86,18 +104,18 @@
             max-width: 1200px;
             margin: 50px auto;
             text-align: center;
+            padding: 20px;
         }
 
         .products-section h2 {
-            font-size: 32px;
+            font-size: 24px;
             margin-bottom: 20px;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            padding: 0 20px;
         }
 
         .product {
@@ -115,7 +133,7 @@
 
         .product img {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
         }
 
@@ -128,7 +146,7 @@
         }
 
         .price {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: bold;
             color: #d32f2f;
         }
@@ -136,7 +154,7 @@
         .buy-btn {
             display: inline-block;
             margin-top: 10px;
-            padding: 10px 15px;
+            padding: 8px 12px;
             background: #d32f2f;
             color: white;
             text-decoration: none;
@@ -153,8 +171,28 @@
             text-align: center;
             background-color: black;
             color: white;
-            padding: 20px;
+            padding: 15px;
             margin-top: 40px;
+        }
+
+        /* جعل الموقع متجاوبًا */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero img {
+                height: 400px;
+            }
+
+            .hero-text h1 {
+                font-size: 22px;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            }
         }
     </style>
 </head>
@@ -162,7 +200,10 @@
 
     <!-- شريط التنقل -->
     <nav>
-        <div class="logo">O.Belkassouia</div>
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/1046/1046769.png" alt="Logo">
+            O.Belkassouia
+        </div>
         <ul>
             <li><a href="#">Accueil</a></li>
             <li><a href="#">Produits</a></li>
@@ -172,7 +213,7 @@
 
     <!-- الواجهة الرئيسية -->
     <section class="hero">
-        <img src="hero.jpg" alt="Viande de qualité">
+        <img src="https://www.carnivor.fr/wp-content/uploads/2021/01/cote-de-boeuf.jpg" alt="Viande de qualité">
         <div class="hero-text">
             <h1>Viandes Premium</h1>
             <p>Découvrez nos morceaux sélectionnés avec soin</p>
@@ -184,7 +225,7 @@
         <h2>Nos Produits</h2>
         <div class="products-grid">
             <div class="product">
-                <img src="steak.jpg" alt="Steak">
+                <img src="https://www.marchandduroi.com/2221-large_default/steak-de-boeuf.jpg" alt="Steak">
                 <div class="product-info">
                     <h3>Steak de Bœuf</h3>
                     <p class="price">120 DH / Kg</p>
@@ -193,7 +234,7 @@
             </div>
 
             <div class="product">
-                <img src="cote-de-boeuf.jpg" alt="Côte de Bœuf">
+                <img src="https://assets.afcdn.com/recipe/20161118/74800_w1024h768c1cx512cy384.jpg" alt="Côte de Bœuf">
                 <div class="product-info">
                     <h3>Côte de Bœuf</h3>
                     <p class="price">250 DH / Kg</p>
@@ -202,19 +243,10 @@
             </div>
 
             <div class="product">
-                <img src="agneau.jpg" alt="Viande d'Agneau">
+                <img src="https://www.monoprix.fr/cdn-cgi/image/format=auto,quality=80,fit=scale-down,width=768/medias/567978.jpg" alt="Agneau">
                 <div class="product-info">
                     <h3>Viande d'Agneau</h3>
                     <p class="price">180 DH / Kg</p>
-                    <a href="#" class="buy-btn">Acheter</a>
-                </div>
-            </div>
-
-            <div class="product">
-                <img src="merguez.jpg" alt="Merguez">
-                <div class="product-info">
-                    <h3>Merguez</h3>
-                    <p class="price">90 DH / Kg</p>
                     <a href="#" class="buy-btn">Acheter</a>
                 </div>
             </div>
